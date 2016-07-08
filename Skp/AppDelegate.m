@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 #import "PKRevealController.h"
-#import "LeftFaceController.h"
+//#import "LeftFaceController.h"
 #import "CommonHeader.h"
 
 #import "MainFaceController.h"
@@ -29,7 +29,7 @@
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     //菜单栏
-    LeftFaceController* leftFaceController = [[LeftFaceController alloc] init];
+//    LeftFaceController* leftFaceController = [[LeftFaceController alloc] init];
     
     UITabBarController *tabBarController;
     tabBarController = [[UITabBarController alloc] init];
@@ -89,9 +89,9 @@
     
     
      //构造PKRevealController对象
-    self.revealController = [PKRevealController revealControllerWithFrontViewController:tabBarController leftViewController:leftFaceController options:nil];
+//    self.revealController = [PKRevealController revealControllerWithFrontViewController:tabBarController leftViewController:leftFaceController options:nil];
     
-//    self.revealController = [PKRevealController revealControllerWithFrontViewController:tabBarController leftViewController:nil options:nil];
+    self.revealController = [PKRevealController revealControllerWithFrontViewController:tabBarController leftViewController:nil options:nil];
     //
     //对导航栏定制 start
     [[UINavigationBar appearance] setBarTintColor:APPFRAME_COLOR];//UIColorFromRGB(0x067AB5)];

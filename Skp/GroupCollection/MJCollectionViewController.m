@@ -9,25 +9,19 @@
 
 #import "MJCollectionViewController.h"
 #import "MJRefresh.h"
-#import "JSDropDownMenu.h"
+//#import "JSDropDownMenu.h"
 #import "GroupCollectionCell.h"
 #import "CommonHeader.h"
 #import "MJCollectionViewController.h"
 #import "XLPlainFlowLayout.h"
 
-@interface MJCollectionViewController()<JSDropDownMenuDataSource,JSDropDownMenuDelegate>
-@property (strong,nonatomic)NSMutableArray *dataMenu1;
-@property (strong,nonatomic)NSMutableArray *dataMenu2;
-@property (strong,nonatomic)NSMutableArray *dataMenu3;
-@property (assign,nonatomic)NSInteger currentData1Index;
-@property (assign,nonatomic)NSInteger currentData2Index;
-@property (assign,nonatomic)NSInteger currentData3Index;
-@property (strong,nonatomic)JSDropDownMenu *menu;
+@interface MJCollectionViewController()
+
+
 @end
 
 
-#define SCREEN_WIDTH ([UIScreen  mainScreen].bounds.size.width)
-#define SCREEN_HEIGHT ([UIScreen mainScreen].bounds.size.height)
+
 static NSString *headerID = @"headerID";
 static NSString *const MJCollectionViewCellIdentifier = @"MJCollectionViewCellIdentifier";
 static const CGFloat MJDuration = 2.0;
@@ -121,7 +115,7 @@ static const CGFloat MJDuration = 2.0;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.collectionView registerClass:[JSDropDownMenu class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader  withReuseIdentifier:headerID];
+//    [self.collectionView registerClass:[JSDropDownMenu class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader  withReuseIdentifier:headerID];
         //
      [self performSelector:NSSelectorFromString(@"languorefresh") withObject:nil];
     //[self performSelector:NSSelectorFromString(self.method) withObject:nil];
@@ -130,22 +124,7 @@ static const CGFloat MJDuration = 2.0;
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:MJCollectionViewCellIdentifier];
 }
 
--(void)initMenu
-{
-    _currentData1Index = 0;
-    _currentData2Index = 0;
-    _currentData3Index = 0;
-    _dataMenu1 = [NSMutableArray arrayWithObjects:@"选择行业", @"离我最近", @"评价最高", @"最新发布", @"人气最高", @"价格最低", @"价格最高", nil];
-    _dataMenu2 = [NSMutableArray arrayWithObjects:@"选择节日", @"离我最近", @"评价最高", @"最新发布", @"人气最高", @"价格最低", @"价格最高", nil];
-    _dataMenu3 = [NSMutableArray arrayWithObjects:@"屏幕比例", @"离我最近", @"评价最高", @"最新发布", @"人气最高", @"价格最低", @"价格最高", nil];
-    //    JSDropDownMenu *menu = [[JSDropDownMenu alloc] initWithOrigin:CGPointMake(0, 20) andHeight:40];
-    _menu.indicatorColor = [UIColor colorWithRed:175.0f/255.0f green:175.0f/255.0f blue:175.0f/255.0f alpha:1.0];
-    _menu.separatorColor = [UIColor colorWithRed:210.0f/255.0f green:210.0f/255.0f blue:210.0f/255.0f alpha:1.0];
-    _menu.textColor = [UIColor colorWithRed:83.f/255.0f green:83.f/255.0f blue:83.f/255.0f alpha:1.0f];
-    _menu.dataSource = self;
-    _menu.delegate = self;
-    
-}
+
 
 #pragma mark UICollectionViewDataSource
 /**
@@ -236,27 +215,27 @@ static const CGFloat MJDuration = 2.0;
  *
  *  @return return value description
  */
-- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
-    
-    if (kind==UICollectionElementKindSectionFooter) {
-
-    }
-    
-    if (indexPath.section >-1) {
-        if(!_menu)
-        {
-            JSDropDownMenu *menu ;
-            
-            menu = [collectionView  dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headerID forIndexPath:indexPath];
-            _menu = [menu  initWithOrigin:CGPointMake(0, 20) andHeight:40];
-            [self initMenu];
-        }
-        
-        return _menu;
-
-    }
-    return nil;
-}
+//- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
+//    
+//    if (kind==UICollectionElementKindSectionFooter) {
+//
+//    }
+//    
+//    if (indexPath.section >-1) {
+//        if(!_menu)
+//        {
+//            JSDropDownMenu *menu ;
+//            
+//            menu = [collectionView  dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headerID forIndexPath:indexPath];
+//            _menu = [menu  initWithOrigin:CGPointMake(0, 20) andHeight:40];
+//            [self initMenu];
+//        }
+//        
+//        return _menu;
+//
+//    }
+//    return nil;
+//}
 
 /**
  *  这个是头的距离（如果想隐藏就改成（0，0））
@@ -270,7 +249,7 @@ static const CGFloat MJDuration = 2.0;
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
 {
     
-    return CGSizeMake(0, 40);
+    return CGSizeZero;
 }
 
 /**
@@ -298,112 +277,6 @@ static const CGFloat MJDuration = 2.0;
 }
 
 
-#pragma mark DownMenuDataSource
-- (NSInteger)numberOfColumnsInMenu:(JSDropDownMenu *)menu {
-    
-    return 3;
-}
-
--(BOOL)displayByCollectionViewInColumn:(NSInteger)column{
-    
-    return NO;
-}
-
--(BOOL)haveRightTableViewInColumn:(NSInteger)column{
-    
-    return NO;
-}
-
--(CGFloat)widthRatioOfLeftColumn:(NSInteger)column{
-    
-    return 1.0f;
-}
-
--(NSInteger)currentLeftSelectedRow:(NSInteger)column{
-    
-    if (column==0) {
-        
-        return _currentData1Index;
-        
-    }
-    else if (column==1) {
-        
-        return _currentData2Index;
-    }
-    
-    else if (column==2){
-        
-        return _currentData3Index;
-    }
-    return 0;
-    
-}
-
-- (NSInteger)menu:(JSDropDownMenu *)menu numberOfRowsInColumn:(NSInteger)column leftOrRight:(NSInteger)leftOrRight leftRow:(NSInteger)leftRow{
-    
-    if (column==0) {
-        
-        return _dataMenu1.count;
-        
-    } else if (column==1){
-        
-        return _dataMenu2.count;
-        
-    } else if (column==2){
-        
-        return _dataMenu3.count;
-    }
-    
-    return 0;
-}
-
-- (NSString *)menu:(JSDropDownMenu *)menu titleForColumn:(NSInteger)column{
-    
-    switch (column) {
-        case 0: return _dataMenu1[_currentData1Index];
-            break;
-        case 1: return _dataMenu2[_currentData2Index];
-            break;
-        case 2: return _dataMenu3[_currentData3Index];
-            break;
-        default:
-            return nil;
-            break;
-    }
-    
-}
-
-- (NSString *)menu:(JSDropDownMenu *)menu titleForRowAtIndexPath:(JSIndexPath *)indexPath {
-    
-    if (indexPath.column==0) {
-        
-        return _dataMenu1[indexPath.row];
-        
-    } else if (indexPath.column==1) {
-        
-        return _dataMenu2[indexPath.row];
-        
-    } else {
-        
-        return _dataMenu3[indexPath.row];
-    }
-}
-#pragma mark DownMenuelegate
-- (void)menu:(JSDropDownMenu *)menu didSelectRowAtIndexPath:(JSIndexPath *)indexPath {
-    
-    if (indexPath.column == 0) {
-        
-        _currentData2Index = indexPath.row;
-        
-    } else if(indexPath.column == 1){
-        
-        _currentData2Index = indexPath.row;
-        
-    } else{
-        
-        _currentData3Index = indexPath.row;
-    }
-}
 
 
 @end

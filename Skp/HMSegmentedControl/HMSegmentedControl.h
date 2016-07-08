@@ -20,6 +20,7 @@ enum HMSelectionIndicatorMode {
 
 @property (nonatomic, strong) UIFont *font; // default is [UIFont fontWithName:@"Avenir-Light" size:19.0f]
 @property (nonatomic, strong) UIColor *textColor; // default is [UIColor blackColor]
+@property (nonatomic, strong) UIColor *textSelectedColor; // default is [UIColor blackColor]
 @property (nonatomic, strong) UIColor *backgroundColor; // default is [UIColor whiteColor]
 @property (nonatomic, strong) UIColor *selectionIndicatorColor; // default is 52, 181, 229
 @property (nonatomic, assign) enum HMSelectionIndicatorMode selectionIndicatorMode; // Default is HMSelectionIndicatorResizesToStringWidth

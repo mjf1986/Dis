@@ -44,6 +44,7 @@
     _segmentWidthArray = [[NSMutableArray alloc]init];
     self.font = [UIFont fontWithName:@"STHeitiSC-Light" size:18.0f];
     self.textColor = [UIColor blackColor];
+    self.textSelectedColor = [UIColor blackColor];
     self.backgroundColor = [UIColor whiteColor];
     self.selectionIndicatorColor = [UIColor colorWithRed:52.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f];
     
@@ -90,6 +91,11 @@
                   lineBreakMode:UILineBreakModeClip
                       alignment:UITextAlignmentCenter];
 #else
+        [self.textColor set];
+        if(self.selectedIndex == idx)
+        {
+            [self.textSelectedColor set];
+        }
         [titleString drawInRect:rect
                        withFont:self.font
                   lineBreakMode:NSLineBreakByClipping
@@ -203,6 +209,7 @@
         }
 
         if (segment != self.selectedIndex) {
+            [self setNeedsDisplay];
             [self setSelectedIndex:segment animated:YES];
         }
 

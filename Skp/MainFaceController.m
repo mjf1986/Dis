@@ -10,15 +10,17 @@
 #import "PKRevealController.h"
 #import "CommonHeader.h"
 #import "INSSearchBar.h"
-#import "SearchViewController.h"
+//#import "SearchViewController.h"
 #import "MenusCell.h"
 #import "HMSegmentedControl.h"
 #import "SVSegmentedControl.h"
-#import "FirstTableViewController.h"
-#import "TableViewController2.h"
+//#import "FirstTableViewController.h"
+//#import "TableViewController2.h"
 //#import "GroupCollection.h"
-#import "GroupCollectionTree.h"
-#import "MJCollectionViewController.h"
+//#import "GroupCollectionTree.h"
+//#import "MJCollectionViewController.h"
+#import "MyModleViewController.h"
+#import "StoreModleController.h"
 
 @interface MainFaceController ()<UIScrollViewDelegate>
 
@@ -66,40 +68,42 @@
     scrollView.showsHorizontalScrollIndicator = NO;
     [self.view addSubview:scrollView];
     
-    FirstTableViewController *tableView1 = [[FirstTableViewController alloc]initWithStyle:UITableViewStylePlain];
+//    FirstTableViewController *tableView1 = [[FirstTableViewController alloc]initWithStyle:UITableViewStylePlain];
     
     
-    //创建CollectionView并指定布局对象
-    UICollectionViewFlowLayout *flow = [[UICollectionViewFlowLayout alloc]init];
-    //指定布局方式为垂直
-    flow.scrollDirection = UICollectionViewScrollDirectionVertical;
-    flow.minimumLineSpacing = 10;//最小行间距(当垂直布局时是行间距，当水平布局时可以理解为列间距)
-    flow.minimumInteritemSpacing = 10;//两个单元格之间的最小间距
-
+//    //创建CollectionView并指定布局对象
+//    UICollectionViewFlowLayout *flow = [[UICollectionViewFlowLayout alloc]init];
+//    //指定布局方式为垂直
+//    flow.scrollDirection = UICollectionViewScrollDirectionVertical;
+//    flow.minimumLineSpacing = 10;//最小行间距(当垂直布局时是行间距，当水平布局时可以理解为列间距)
+//    flow.minimumInteritemSpacing = 10;//两个单元格之间的最小间距
+//
+//    
+//    UICollectionViewFlowLayout *flow2 = [[UICollectionViewFlowLayout alloc]init];
+//    //指定布局方式为垂直
+//    flow2.scrollDirection = UICollectionViewScrollDirectionVertical;
+//    flow2.minimumLineSpacing = 10;//最小行间距(当垂直布局时是行间距，当水平布局时可以理解为列间距)
+//    flow2.minimumInteritemSpacing = 10;//两个单元格之间的最小间距
+//
+//    
+//    //创建CollectionView并指定布局对象
+//    UICollectionViewFlowLayout *flow3 = [[UICollectionViewFlowLayout alloc]init];
+//    //指定布局方式为垂直
+//    flow3.scrollDirection = UICollectionViewScrollDirectionVertical;
+//    flow3.minimumLineSpacing = 10;//最小行间距(当垂直布局时是行间距，当水平布局时可以理解为列间距)
+//    flow3.minimumInteritemSpacing = 10;//两个单元格之间的最小间距
+//
+//
+//    //创建CollectionView并指定布局对象
+//    UICollectionViewFlowLayout *flow4 = [[UICollectionViewFlowLayout alloc]init];
+//    //指定布局方式为垂直
+//    flow4.scrollDirection = UICollectionViewScrollDirectionVertical;
+//    flow4.minimumLineSpacing = 10;//最小行间距(当垂直布局时是行间距，当水平布局时可以理解为列间距)
+//    flow4.minimumInteritemSpacing = 10;//两个单元格之间的最小间距
     
-    UICollectionViewFlowLayout *flow2 = [[UICollectionViewFlowLayout alloc]init];
-    //指定布局方式为垂直
-    flow2.scrollDirection = UICollectionViewScrollDirectionVertical;
-    flow2.minimumLineSpacing = 10;//最小行间距(当垂直布局时是行间距，当水平布局时可以理解为列间距)
-    flow2.minimumInteritemSpacing = 10;//两个单元格之间的最小间距
-
-    
-    //创建CollectionView并指定布局对象
-    UICollectionViewFlowLayout *flow3 = [[UICollectionViewFlowLayout alloc]init];
-    //指定布局方式为垂直
-    flow3.scrollDirection = UICollectionViewScrollDirectionVertical;
-    flow3.minimumLineSpacing = 10;//最小行间距(当垂直布局时是行间距，当水平布局时可以理解为列间距)
-    flow3.minimumInteritemSpacing = 10;//两个单元格之间的最小间距
-
-
-    //创建CollectionView并指定布局对象
-    UICollectionViewFlowLayout *flow4 = [[UICollectionViewFlowLayout alloc]init];
-    //指定布局方式为垂直
-    flow4.scrollDirection = UICollectionViewScrollDirectionVertical;
-    flow4.minimumLineSpacing = 10;//最小行间距(当垂直布局时是行间距，当水平布局时可以理解为列间距)
-    flow4.minimumInteritemSpacing = 10;//两个单元格之间的最小间距
-    
-    MJCollectionViewController *collection = [MJCollectionViewController new];
+//    MJCollectionViewController *collection = [MJCollectionViewController new];
+    StoreModleController *storeCollection = [StoreModleController new];
+    MyModleViewController *mycollection = [MyModleViewController new];
  //   GroupCollection *tableView2 = [[GroupCollection alloc]initWithCollectionViewLayout:flow];
 //    GroupCollection *tableView3 = [[GroupCollectionTree alloc]initWithCollectionViewLayout:flow2];
 //    GroupCollection *tableView4 = [[GroupCollectionTree alloc]initWithCollectionViewLayout:flow3];
@@ -120,14 +124,15 @@
 //    [tableView4 setSd_tag:@(4)];
 //    [tableView5 setSd_tag:@(5)];
 
-    [self addChildViewController:collection];
-    [self addChildViewController:tableView1];
+    [self addChildViewController:storeCollection];
+    [self addChildViewController:mycollection];
+//    [self addChildViewController:tableView1];
 //    [self addChildViewController:tableView3];
 //    [self addChildViewController:tableView4];
 //    [self addChildViewController:tableView5];
 
 
-     _slideTableViews = @[collection.view,tableView1.view/*,tableView3.view,tableView4.view,tableView5.view*/];
+     _slideTableViews = @[storeCollection.view,mycollection.view/*,tableView3.view,tableView4.view,tableView5.view*/];
     
     _scrollView = scrollView;
     _scrollView.sd_layout
@@ -243,14 +248,14 @@
     [self.scrollView scrollRectToVisible:CGRectMake(fWidth*selectIndex,0,fWidth,HEIGHT_IMAGE) animated:YES]; //
 }
 
--(void)clickSearch
-{
-    SearchViewController *searchVC = [[SearchViewController alloc]init];
-    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:searchVC];
-    [self presentViewController:nav animated:YES completion:^{
-        
-    }];
-}
+//-(void)clickSearch
+//{
+//    SearchViewController *searchVC = [[SearchViewController alloc]init];
+//    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:searchVC];
+//    [self presentViewController:nav animated:YES completion:^{
+//        
+//    }];
+//}
 
 
 //-(void)initForTaBar
